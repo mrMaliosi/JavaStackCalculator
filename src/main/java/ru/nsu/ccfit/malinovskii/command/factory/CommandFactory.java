@@ -3,6 +3,7 @@ import ru.nsu.ccfit.malinovskii.calculatorcommands.Command;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -14,35 +15,22 @@ public class CommandFactory {
         commandMap = new HashMap<>();
     }
 
-    public void loadConfiguration(String configFile) throws IOException {
+    public void loadConfiguration(String configFile) throws Exception {
         Properties properties = new Properties();                                                   //Хэш-таблица, где объект = объект
-        try (InputStream inputStream = CommandFactory.class.getResourceAsStream(configFile)) {
-            properties.load(inputStream);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        InputStream inputStream = CommandFactory.class.getResourceAsStream(configFile);
+        properties.load(inputStream);
 
         for (String commandName : properties.stringPropertyNames()) {
             String className = properties.getProperty(commandName);
-            try {
-                Class<? extends Command> commandClass = Class.forName(className).asSubclass(Command.class);     //Class.forName(className) - загружает класс с указанным именем className. .asSubclass(Command.class) - проверяет, что загруженный класс является подклассом класса Command. Если это так, возвращается экземпляр типа Class<? extends Command>, который представляет класс commandClass.
-                commandMap.put(commandName, commandClass);
-            } catch (ClassNotFoundException e) {
-                // Обработка ошибки загрузки класса команды
-                e.printStackTrace();
-            }
+            Class<? extends Command> commandClass = Class.forName(className).asSubclass(Command.class);     //Class.forName(className) - загружает класс с указанным именем className. .asSubclass(Command.class) - проверяет, что загруженный класс является подклассом класса Command. Если это так, возвращается экземпляр типа Class<? extends Command>, который представляет класс commandClass.
+            commandMap.put(commandName, commandClass);
         }
     }
 
-    public Command createCommand(String commandName) {
+    public Command createCommand(String commandName) throws Exception {
         Class<? extends Command> commandClass = commandMap.get(commandName);
         if (commandClass != null) {
-            try {
-                return commandClass.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                // Обработка ошибки создания объекта команды
-                e.printStackTrace();
-            }
+            return commandClass.getDeclaredConstructor().newInstance();
         }
         return null;
     }
