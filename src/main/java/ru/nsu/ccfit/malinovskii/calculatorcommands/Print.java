@@ -1,11 +1,15 @@
 package ru.nsu.ccfit.malinovskii.calculatorcommands;
 
 import ru.nsu.ccfit.malinovskii.ExecutionContext;
+import ru.nsu.ccfit.malinovskii.exceptions.PrintException;
 
 public class Print implements Command{
     @Override
-    public void execute(ExecutionContext context)
-    {
+    public void execute(ExecutionContext context) throws PrintException {
+        if (context.stack.isEmpty())
+        {
+            throw new PrintException();
+        }
         System.out.println(context.stack.getFirst());
     }
 }
