@@ -2,12 +2,10 @@ package ru.nsu.ccfit.malinovskii.calculatorcommands;
 
 import ru.nsu.ccfit.malinovskii.ExecutionContext;
 
-public class Minus implements Command{
+public class Exit implements Command{
     @Override
     public void execute(ExecutionContext context)       //Добавь исключенния
     {
-        double a = context.pop();
-        double b = context.pop();
-        context.push(b - a);
+        context.isEnd = true;
     }
 }
