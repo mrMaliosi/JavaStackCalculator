@@ -1,7 +1,5 @@
 package ru.nsu.ccfit.malinovskii.stackcalculator;
 
-import java.util.logging.Logger;
-
 import static ru.nsu.ccfit.malinovskii.stackcalculator.Main.logger;
 
 public class SystemMessages {

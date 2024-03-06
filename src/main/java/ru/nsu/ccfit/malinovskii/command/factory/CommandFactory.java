@@ -1,7 +1,7 @@
 package ru.nsu.ccfit.malinovskii.command.factory;
 import ru.nsu.ccfit.malinovskii.calculatorcommands.Command;
+import ru.nsu.ccfit.malinovskii.exceptions.CommandNotFoundException;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 
 public class CommandFactory {
-    private Map<String, Class<? extends Command>> commandMap;           //Class<? extends Command> означает, что принимаются любые ? (неизвестные типы), extends (ограниченные) классом Command
+    private final Map<String, Class<? extends Command>> commandMap;           //Class<? extends Command> означает, что принимаются любые ? (неизвестные типы), extends (ограниченные) классом Command
 
     public CommandFactory() {
         commandMap = new HashMap<>();
@@ -32,6 +32,8 @@ public class CommandFactory {
         if (commandClass != null) {
             return commandClass.getDeclaredConstructor().newInstance();
         }
-        return null;
+        else {
+            throw new CommandNotFoundException();
+        }
     }
 }

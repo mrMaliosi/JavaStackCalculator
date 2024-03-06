@@ -6,6 +6,6 @@ public class Define implements Command{
     @Override
     public void execute(ExecutionContext context)
     {
-        context.parametrs.put(context.command.get(1), Double.parseDouble(context.command.get(2)));
+        context.parametrsPut();
     }
 }

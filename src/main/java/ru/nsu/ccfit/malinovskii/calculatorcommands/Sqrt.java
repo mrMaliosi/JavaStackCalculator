@@ -8,7 +8,7 @@ public class Sqrt implements Command{
     @Override
     public void execute(ExecutionContext context)
     {
-        double a = context.stack.pop();
-        context.stack.push(sqrt(a));
+        double a = context.pop();
+        context.push(sqrt(a));
     }
 }

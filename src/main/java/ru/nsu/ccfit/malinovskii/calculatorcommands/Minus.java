@@ -6,8 +6,8 @@ public class Minus implements Command{
     @Override
     public void execute(ExecutionContext context)       //Добавь исключенния
     {
-        double a = context.stack.pop();
-        double b = context.stack.pop();
-        context.stack.push(b - a);
+        double a = context.pop();
+        double b = context.pop();
+        context.push(b - a);
     }
 }

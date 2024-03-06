@@ -9,31 +9,35 @@ import static ru.nsu.ccfit.malinovskii.stackcalculator.Main.logger;
 
 
 public class StackCalculator {
-    private CommandFactory factory;
+
+    private final CommandFactory factory;
+    private final ExecutionContext context;
     private String fileName;
+
 
     public StackCalculator(CommandFactory factory) {
         this.factory = factory;
+        this.context = new ExecutionContext();
     }
     public void Setup(String fileName) throws Exception {
+        logger.info("Calculator has started his work...");
         SystemMessages.greetings();
         factory.loadConfiguration("/commands.properties");
         this.fileName = fileName;
         logger.info("DONE.");
     }
 
-    public void calculate() throws Exception {
-        logger.info("Calculator has started his work...");
-        ExecutionContext context = new ExecutionContext();
+    public int calculate() throws Exception {
         CommandParser parser = new CommandParser(fileName);
         while (!context.isEnd) {
             parser.NextCommand(context);
             logger.info("Executing command...");
-            Command command = factory.createCommand(context.command.element());     //Фабрика без кэширования
+            Command command = factory.createCommand(context.getCommandName());     //Фабрика без кэширования
             command.execute(context);
             logger.info("The end of command executing.");
         }
         logger.info("Calculator has ended his work.");
+        return 1;
     }
 
 }

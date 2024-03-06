@@ -2,13 +2,12 @@ package ru.nsu.ccfit.malinovskii.stackcalculator;
 
 import ru.nsu.ccfit.malinovskii.command.factory.CommandFactory;
 
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
     public static final Logger logger = Logger.getLogger(Main.class.getName());
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
         //Парсинг аргументов командной строки
         String fileName;
         if (args.length < 1) {
@@ -27,15 +26,17 @@ public class Main {
             calculator.Setup(fileName);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Exception: ", e);
-            //System.err.println(e.getLocalizedMessage());
         }
 
+        int calculation = 1;
         //Работа калькулятора
-        try {
-            calculator.calculate();
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Exception: ", e);
-            //System.err.println(e.getLocalizedMessage());
+        while (calculation == 1)
+        {
+            try {
+                calculation = calculator.calculate();
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Exception: ", e);
+            }
         }
 
     }

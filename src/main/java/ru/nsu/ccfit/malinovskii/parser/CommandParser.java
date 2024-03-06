@@ -21,9 +21,9 @@ public class CommandParser {
     public void NextCommand(ExecutionContext context) throws IOException {
         String line = input.nextLine();
         if (!line.isEmpty()) {
-            context.command.clear();
+            context.commandClear();
             String[] parts = line.split(" ");
-            context.command.addAll(Arrays.asList(parts));
+            context.commandAdd(parts);
         }
     }
 }
