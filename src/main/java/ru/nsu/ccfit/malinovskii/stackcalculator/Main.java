@@ -7,8 +7,7 @@ import ru.nsu.ccfit.malinovskii.command.factory.CommandFactory;
 import java.io.IOException;
 
 public class Main {
-    public static final Logger logger = LogManager.getLogger(Main.class);
-
+    public static final Logger logger = LogManager.getLogger(Main.class);   //logging
     public static void main(String[] args) throws IOException {
         // Парсинг аргументов командной строки
         String fileName;
