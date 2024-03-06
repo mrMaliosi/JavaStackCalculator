@@ -9,6 +9,7 @@ import static ru.nsu.ccfit.malinovskii.stackcalculator.Main.logger;
 
 
 public class StackCalculator {
+
     private final CommandFactory factory;
     private final ExecutionContext context;
     private String fileName;
@@ -27,7 +28,6 @@ public class StackCalculator {
     }
 
     public int calculate() throws Exception {
-
         CommandParser parser = new CommandParser(fileName);
         while (!context.isEnd) {
             parser.NextCommand(context);
