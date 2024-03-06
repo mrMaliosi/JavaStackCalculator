@@ -9,6 +9,7 @@ import static ru.nsu.ccfit.malinovskii.stackcalculator.Main.logger;
 
 
 public class StackCalculator {
+
     private final CommandFactory factory;
     private final ExecutionContext context;
     private String fileName;
