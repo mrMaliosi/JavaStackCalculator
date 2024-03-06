@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.malinovskii.calculatorcommands;
 
-import ru.nsu.ccfit.malinovskii.ExecutionContext;
+import ru.nsu.ccfit.malinovskii.context.ExecutionContext;
 
 public class Minus implements Command{
     @Override

@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.malinovskii.stackcalculator;
 
-import ru.nsu.ccfit.malinovskii.ExecutionContext;
+import ru.nsu.ccfit.malinovskii.context.ExecutionContext;
 import ru.nsu.ccfit.malinovskii.calculatorcommands.Command;
 import ru.nsu.ccfit.malinovskii.command.factory.CommandFactory;
 import ru.nsu.ccfit.malinovskii.parser.CommandParser;
@@ -19,7 +19,7 @@ public class StackCalculator {
         this.context = new ExecutionContext();
     }
     public void Setup(String fileName) throws Exception {
-        logger.info("Calculator has started his work...");
+        logger.info("Starting to configure the calculator...");
         SystemMessages.greetings();
         factory.loadConfiguration("/commands.properties");
         this.fileName = fileName;
@@ -27,17 +27,16 @@ public class StackCalculator {
     }
 
     public int calculate() throws Exception {
-
         CommandParser parser = new CommandParser(fileName);
         while (!context.isEnd) {
             parser.NextCommand(context);
-            logger.info("Executing command...");
+            logger.info("Executing command: " + context.getCommandName());
             Command command = factory.createCommand(context.getCommandName());     //Фабрика без кэширования
             command.execute(context);
-            logger.info("The end of command executing.");
+            logger.info("The end of executing" + context.getCommandName() + ".");
         }
         logger.info("Calculator has ended his work.");
-        return 1;
+        return 0;
     }
 
 }
