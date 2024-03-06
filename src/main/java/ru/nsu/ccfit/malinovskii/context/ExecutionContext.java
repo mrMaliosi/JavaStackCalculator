@@ -1,8 +1,8 @@
-package ru.nsu.ccfit.malinovskii;
+package ru.nsu.ccfit.malinovskii.context;
 
 import java.util.*;
 
-public class ExecutionContext {
+public class ExecutionContext implements Context{
 
     private final Map<String, Double> parametrs;
     private final LinkedList<Double> stack;

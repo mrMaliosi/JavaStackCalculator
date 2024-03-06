@@ -1,0 +1,14 @@
+мар. 03, 2024 1:13:30 PM ru.nsu.ccfit.malinovskii.stackcalculator.StackCalculator Setup
+INFO: Calculator has started his work...
+мар. 03, 2024 1:13:30 PM ru.nsu.ccfit.malinovskii.stackcalculator.SystemMessages greetings
+INFO: Starting of Calculator configuration...
+мар. 03, 2024 1:13:30 PM ru.nsu.ccfit.malinovskii.stackcalculator.StackCalculator Setup
+INFO: DONE.
+мар. 03, 2024 1:26:46 PM ru.nsu.ccfit.malinovskii.stackcalculator.Main main
+SEVERE: Exception: 
+java.util.NoSuchElementException: No line found
+	at java.base/java.util.Scanner.nextLine(Scanner.java:1660)
+	at ru.nsu.ccfit.malinovskii.parser.CommandParser.NextCommand(CommandParser.java:22)
+	at ru.nsu.ccfit.malinovskii.stackcalculator.StackCalculator.calculate(StackCalculator.java:33)
+	at ru.nsu.ccfit.malinovskii.stackcalculator.Main.main(Main.java:64)
+

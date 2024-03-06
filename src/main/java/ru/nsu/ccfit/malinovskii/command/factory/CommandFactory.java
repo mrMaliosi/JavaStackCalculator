@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class CommandFactory {
+public class CommandFactory implements Factory{
     private final Map<String, Class<? extends Command>> commandMap;           //Class<? extends Command> означает, что принимаются любые ? (неизвестные типы), extends (ограниченные) классом Command
 
     public CommandFactory() {
         commandMap = new HashMap<>();
     }
-
+    @Override
     public void loadConfiguration(String configFile) throws Exception {
         Properties properties = new Properties();                                                   //Хэш-таблица, где объект = объект
         InputStream inputStream = CommandFactory.class.getResourceAsStream(configFile);
@@ -26,7 +26,7 @@ public class CommandFactory {
             commandMap.put(commandName, commandClass);
         }
     }
-
+    @Override
     public Command createCommand(String commandName) throws Exception {
         Class<? extends Command> commandClass = commandMap.get(commandName);
         if (commandClass != null) {
